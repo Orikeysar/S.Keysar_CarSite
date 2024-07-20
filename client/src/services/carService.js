@@ -10,8 +10,8 @@ export const getCars = async () => {
 export const addCar = async (formData) => {
   const response = await axios.post(apiUrl, formData, {
     headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+      'Content-Type': 'multipart/form-data',
+    },
   });
   return response.data;
 };

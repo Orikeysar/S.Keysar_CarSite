@@ -16,19 +16,33 @@ function AdminAddCars() {
   }, []);
 
   const fetchCars = async () => {
-    const cars = await getCars();
-    setCars(cars);
-    setFilteredCars(cars);
+    try {
+      const cars = await getCars();
+      setCars(cars);
+      setFilteredCars(cars);
+    } catch (error) {
+      console.error('Error fetching cars:', error);
+      setCars([]);
+      setFilteredCars([]);
+    }
   };
 
   const handleAddCar = async (formData) => {
-    await addCar(formData);
-    fetchCars();
+    try {
+      await addCar(formData);
+      fetchCars();
+    } catch (error) {
+      console.error('Error adding car:', error);
+    }
   };
 
   const handleDeleteCar = async (id) => {
-    await deleteCar(id);
-    fetchCars();
+    try {
+      await deleteCar(id);
+      fetchCars();
+    } catch (error) {
+      console.error('Error deleting car:', error);
+    }
   };
 
   const handleFilter = ({ kind, maxPrice, maxKilometer, maxYear }) => {
@@ -68,7 +82,7 @@ function AdminAddCars() {
         <AddCarForm onAdd={handleAddCar} />
         <Filter onFilter={handleFilter} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-          {filteredCars.map((car) => (
+          {Array.isArray(filteredCars) && filteredCars.map((car) => (
             <CarItem key={car._id} car={car} handleDeleteCar={handleDeleteCar} />
           ))}
         </div>

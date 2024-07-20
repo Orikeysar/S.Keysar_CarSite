@@ -16,13 +16,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Get all cars
+// GET /api/cars
 router.get('/', async (req, res) => {
   try {
     const cars = await Car.find();
     res.json(cars);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
