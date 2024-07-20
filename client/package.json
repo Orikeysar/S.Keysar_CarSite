@@ -13,8 +13,7 @@
     "react-dom": "^18.3.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "^5.0.1",
-    "serve": "^14.1.2",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -22,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "serve -s build"
+    "postinstall": "chmod +x node_modules/.bin/react-scripts"
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +48,7 @@
     "tailwindcss": "^3.4.4"
   },
   "engines": {
-    "node": "16.x",
+    "node": "18.x",
     "npm": "6.x"
   }
 }
