@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "./static/css/main.ec0161b1.css",
+    "main.js": "./static/js/main.d0c98f34.js",
+    "static/media/logo_S.keysar.jpg": "./static/media/logo_S.keysar.04de9000af4c88cefd17.jpg",
+    "index.html": "./index.html",
+    "main.ec0161b1.css.map": "./static/css/main.ec0161b1.css.map",
+    "main.d0c98f34.js.map": "./static/js/main.d0c98f34.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec0161b1.css",
+    "static/js/main.d0c98f34.js"
+  ]
+}
