@@ -11,7 +11,9 @@ const { initUploadDir } = require('./utils/multerConfig');
 const app = express();
 const port = process.env.PORT || 5000; // Use environment variable
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://s-keysar-car-site.vercel.app/' // Replace with your Vercel client URL
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
