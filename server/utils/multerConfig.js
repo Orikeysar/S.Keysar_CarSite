@@ -1,4 +1,3 @@
-// utils/multerConfig.js
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -20,6 +19,4 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
-
-module.exports = { storage, initUploadDir, upload };
+module.exports = { storage, initUploadDir };

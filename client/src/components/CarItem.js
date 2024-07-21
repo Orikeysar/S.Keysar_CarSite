@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Modal from 'react-bootstrap/Modal';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocation } from 'react-router-dom';
 
 const CarItem = ({ car, handleDeleteCar }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState('');
   const location = useLocation();
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrlImage = process.env.REACT_APP_API_URL_IMAGE;
 
   const handleImageClick = (image) => {
-    setModalImage(`${apiUrl}${image}`);
+    setModalImage(`${apiUrlImage}${image}`);
     setShowModal(true);
   };
 
@@ -23,7 +23,7 @@ const CarItem = ({ car, handleDeleteCar }) => {
         {car.carImages.map((image, index) => (
           <Carousel.Item key={index}>
             <img
-              src={`${apiUrl}${image}`}
+              src={`${apiUrlImage}${image}`}
               alt={`Slide ${index}`}
               className="w-full h-64 object-cover cursor-pointer"
               onClick={() => handleImageClick(image)}
@@ -72,9 +72,8 @@ const CarItem = ({ car, handleDeleteCar }) => {
           </div>
         )}
       </div>
-
-      {/* Modal for image popup */}
-      <Modal show={showModal} onHide={handleCloseModal} centered>
+  {/* Modal for image popup */}
+  <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title className='text-right'>תמונת {car.make}-{car.model}</Modal.Title>
         </Modal.Header>

@@ -1,8 +1,10 @@
-// server/routes/carRoutes.js
 const express = require('express');
 const router = express.Router();
-const { upload } = require('../utils/multerConfig');
+const multer = require('multer');
 const Car = require('../models/carModel');
+const { storage } = require('../utils/multerConfig');
+
+const upload = multer({ storage });
 
 // GET /api/cars
 router.get('/', async (req, res) => {
