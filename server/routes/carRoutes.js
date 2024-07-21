@@ -1,20 +1,8 @@
+// server/routes/carRoutes.js
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
+const { upload } = require('../utils/multerConfig');
 const Car = require('../models/carModel');
-
-// Multer configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-const upload = multer({ storage });
 
 // GET /api/cars
 router.get('/', async (req, res) => {

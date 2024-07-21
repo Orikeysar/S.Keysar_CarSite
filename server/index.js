@@ -1,3 +1,4 @@
+// server/index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -24,18 +25,6 @@ mongoose.connect(process.env.MONGODB_URI, {
   console.error('MongoDB connection error:', err);
 });
 
-// נתיב אימות
-const adminPassword = process.env.ADMIN_PASSWORD || 'sksk1212';
-
-app.post('/api/cars/login', (req, res) => {
-  const { password } = req.body;
-  if (password === adminPassword) {
-    res.json({ authenticated: true });
-  } else {
-    res.status(401).json({ authenticated: false });
-  }
-});
-
 app.use('/api/cars', carRoutes);
 
 app.get('/', (req, res) => {
@@ -45,7 +34,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}

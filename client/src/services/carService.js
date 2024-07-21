@@ -8,7 +8,7 @@ export const getCars = async () => {
 };
 
 export const addCar = async (formData) => {
-  const response = await axios.post(apiUrl, formData, {
+  const response = await axios.post(`${apiUrl}/cars`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -17,6 +17,6 @@ export const addCar = async (formData) => {
 };
 
 export const deleteCar = async (id) => {
-  const response = await axios.delete(`${apiUrl}/${id}`);
+  const response = await axios.delete(`${apiUrl}/cars/${id}`);
   return response.data;
 };
