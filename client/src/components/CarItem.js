@@ -6,11 +6,12 @@ import { useLocation } from 'react-router-dom';
 
 const CarItem = ({ car, handleDeleteCar }) => {
   const [showModal, setShowModal] = useState(false);
-  const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [modalImage, setModalImage] = useState('');
   const location = useLocation();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-  const handleImageClick = (index) => {
-    setModalImageIndex(index);
+  const handleImageClick = (image) => {
+    setModalImage(`${apiUrl}${image}`);
     setShowModal(true);
   };
 
@@ -22,16 +23,16 @@ const CarItem = ({ car, handleDeleteCar }) => {
         {car.carImages.map((image, index) => (
           <Carousel.Item key={index}>
             <img
-              src={`http://localhost:5000${image}`}
+              src={`${apiUrl}${image}`}
               alt={`Slide ${index}`}
               className="w-full h-64 object-cover cursor-pointer"
-              onClick={() => handleImageClick(index)}
+              onClick={() => handleImageClick(image)}
             />
           </Carousel.Item>
         ))}
       </Carousel>
       {car.isElectric && (
-        <div className="absolute top-0 right-0 bg-green-500 opacity-65 text-white px-3 py-2 text-s font-bold">
+        <div className="absolute top-0 right-0 bg-green-500 opacity-65 text-white px-3 py-2 text-s font-bold ">
           רכב חשמלי
         </div>
       )}
@@ -78,17 +79,7 @@ const CarItem = ({ car, handleDeleteCar }) => {
           <Modal.Title className='text-right'>תמונת {car.make}-{car.model}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Carousel activeIndex={modalImageIndex} onSelect={(index) => setModalImageIndex(index)}>
-            {car.carImages.map((image, index) => (
-              <Carousel.Item key={index}>
-                <img
-                  src={`http://localhost:5000${image}`}
-                  alt={`Slide ${index}`}
-                  className="w-full h-auto"
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
+          <img src={modalImage} alt="Car" className="w-full h-auto" />
         </Modal.Body>
       </Modal>
     </div>
