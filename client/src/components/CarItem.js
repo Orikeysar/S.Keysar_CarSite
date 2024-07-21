@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Modal from 'react-bootstrap/Modal';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import bootstrap CSS
 import { useLocation } from 'react-router-dom';
 
 const CarItem = ({ car, handleDeleteCar }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState('');
   const location = useLocation();
+
   const apiUrlImage = process.env.REACT_APP_API_URL_IMAGE;
 
   const handleImageClick = (image) => {
@@ -48,7 +49,7 @@ const CarItem = ({ car, handleDeleteCar }) => {
           </div>
           <div className="flex items-center justify-end mb-1">
             <span>קילומטר: {car.kilometer.toLocaleString()}</span>
-            <svg className="w-4 h-4 text-gray-500 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 19h16M4 10l6-6m0 0l6 6m-6-6v6"></path></svg>
+            <svg className="w-4 h-4 text-gray-500 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 19h16M4 10l6-6m0 0ל6 6m-6-6v6"></path></svg>
           </div>
           <div className="flex items-center justify-end mb-1">
             <span>יד: {car.hand}</span>
@@ -72,8 +73,9 @@ const CarItem = ({ car, handleDeleteCar }) => {
           </div>
         )}
       </div>
-  {/* Modal for image popup */}
-  <Modal show={showModal} onHide={handleCloseModal} centered>
+
+      {/* Modal for image popup */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title className='text-right'>תמונת {car.make}-{car.model}</Modal.Title>
         </Modal.Header>
