@@ -26,6 +26,18 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.use('/api/cars', carRoutes);
 
+// נתיב אימות
+const adminPassword = process.env.ADMIN_PASSWORD;
+
+app.post('/login', (req, res) => {
+  const { password } = req.body;
+  if (password === adminPassword) {
+    res.json({ authenticated: true });
+  } else {
+    res.status(401).json({ authenticated: false });
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Server is running');
 });
